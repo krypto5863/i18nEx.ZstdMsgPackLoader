@@ -1,6 +1,6 @@
 # i18nex.ZstdMsgPackLoader
 
-A simple loader that allows i18nex to load zstd compressed MsgPack files. MsgPack files are created with our included console tool. The file can be compressed or by the included tool or by the user afterwards.
+A simple loader that allows i18nex to load zstd compressed MsgPack files. MsgPack files are created with our included console tool. The file can be compressed by the included tool or by the user afterwards.
 
 This was made in an attempt to compress the gross amount of script files a translation of this game takes. It was simply unacceptable and the load times were way too long. This seeks to perfectly balance size and speed. The result is this loader for i18nex. Faster than loose files and smaller too. In trials, the following speeds were observed:
 
