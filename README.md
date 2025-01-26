@@ -28,6 +28,7 @@ This means that loose files will always overwrite MsgPack files. Uncompressed Ms
 # Requires
 
 i18nEx: [https://github.com/ghorsington/COM3D2.i18nEx  ](https://github.com/Pain-Brioche/COM3D2.i18nEx)
+COM3D2 3.41+
 
 # How to use the loader
 
