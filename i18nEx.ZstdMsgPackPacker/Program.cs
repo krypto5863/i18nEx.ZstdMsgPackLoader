@@ -1,7 +1,9 @@
 ﻿using System.CommandLine;
 using System.Diagnostics;
 using System.Text;
+using System.Xml;
 using MessagePack;
+using ZstdSharp;
 
 namespace i18nEx.ZstdMsgPackPacker
 {
@@ -146,17 +148,18 @@ namespace i18nEx.ZstdMsgPackPacker
 
 			var outputPath = string.IsNullOrEmpty(outputName) ? backupOutput : outputName;
 
-			var data = MessagePackSerializer.Serialize(filesDictionary, SerializerOptions);
+			using var outputStream = File.OpenWrite(outputPath);
 
 			if (compression)
 			{
-				using var compressor = new ZstdSharp.Compressor(ZstdSharp.Compressor.MaxCompressionLevel);
-				data = compressor
-					.Wrap(data)
-					.ToArray();
+				using var compressor = new CompressionStream(outputStream);
+				MessagePackSerializer.Serialize(compressor, filesDictionary, SerializerOptions);
+			}
+			else
+			{
+				MessagePackSerializer.Serialize(outputStream, filesDictionary, SerializerOptions);
 			}
 
-			File.WriteAllBytes(outputPath, data);
 			Console.WriteLine($"Done, saved file to {outputPath}");
 		}
 	}
