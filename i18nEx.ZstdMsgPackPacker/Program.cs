@@ -152,7 +152,7 @@ namespace i18nEx.ZstdMsgPackPacker
 
 			if (compression)
 			{
-				using var compressor = new CompressionStream(outputStream);
+				using var compressor = new CompressionStream(outputStream, Compressor.MaxCompressionLevel);
 				MessagePackSerializer.Serialize(compressor, filesDictionary, SerializerOptions);
 			}
 			else
